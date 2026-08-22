@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placar de Pontos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="scoreboard">
+        <header class="scoreboard__header">
+            <div>
+                <p class="eyebrow">Partida amistosa</p>
+                <h1>Placar</h1>
+            </div>
+            <span class="status">Ao vivo</span>
+        </header>
+
+        <section class="scoreboard__panel">
+            <article class="player-card">
+                <span class="player-card__label">Jogador 01</span>
+                <h2>Eu</h2>
+                <p class="score" id="pontosCasa">0</p>
+                <button class="button button--point" onclick="adicionarPonto1()">+ Adicionar ponto</button>
+            </article>
+
+            <div class="versus">VS</div>
+
+            <article class="player-card">
+                <span class="player-card__label">Jogador 02</span>
+                <h2>Você</h2>
+                <p class="score" id="pontosVisitante">0</p>
+                <button class="button button--point" onclick="adicionarPonto2()">+ Adicionar ponto</button>
+                
+            </article>
+        </section>
+
+        <footer class="scoreboard__footer">
+            <p>A partida está empatada</p>
+            <button class="button button--reset" id="reset1" onclick="resetar()">Reiniciar partida</button>
+        </footer>
+    </main>
+
+    <script>
+        let timeCasa = 0
+        let timeVisitante = 0
+
+        let placarUm = document.getElementById("pontosCasa")
+        let placarDois = document.getElementById("pontosVisitante")
+
+        function adicionarPonto1() {
+            timeCasa++
+            placarUm.innerText = timeCasa
+        }
+
+        function adicionarPonto2() {
+            timeVisitante++
+            placarDois.innerText = timeVisitante
+        }
+
+
+        function resetar() {
+            timeCasa = 0;
+            timeVisitante = 0;
+
+            placarUm.textContent = timeCasa;
+            placarDois.textContent = timeVisitante;
+        }
+
+
+    </script>
+</body>
+
+</html>
