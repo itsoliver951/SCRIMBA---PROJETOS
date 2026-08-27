@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pessoas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Lista de Pessoas</h1>
+        <p>Digite um nome para adicionar à lista.</p>
+
+        <form id="person-form">
+            <label for="person-name">Nome</label>
+            <div class="form-row">
+                <input
+                    id="person-name"
+                    name="person-name"
+                    type="text"
+                    placeholder="Ex.: Maria"
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">Adicionar</button>
+            </div>
+        </form>
+
+        <ul id="person-list" aria-live="polite"></ul>
+        <p id="empty-message" class="empty-message">Nenhuma pessoa adicionada.</p>
+    </main>
+
+    <script>
+        const form = document.querySelector('#person-form');
+        const nameInput = document.querySelector('#person-name');
+        const personList = document.querySelector('#person-list');
+        const emptyMessage = document.querySelector('#empty-message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = nameInput.value.trim();
+
+            if (!name) return;
+
+            const listItem = document.createElement('li');
+            const nameText = document.createElement('span');
+            const removeButton = document.createElement('button');
+
+            nameText.textContent = name;
+            removeButton.textContent = 'Remover';
+            removeButton.type = 'button';
+            removeButton.className = 'remove-button';
+            removeButton.setAttribute('aria-label', `Remover ${name}`);
+
+            removeButton.addEventListener('click', () => {
+                listItem.remove();
+                updateEmptyMessage();
+            });
+
+            listItem.append(nameText, removeButton);
+            personList.appendChild(listItem);
+
+            nameInput.value = '';
+            nameInput.focus();
+            updateEmptyMessage();
+        });
+
+        function updateEmptyMessage() {
+            emptyMessage.hidden = personList.children.length > 0;
+        }
+    </script>
+</body>
+</html>
