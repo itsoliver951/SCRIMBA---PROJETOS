@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor</title>
+</head>
+
+<body>
+    <main>
+        <div id="container1">
+            <h1>Metric/Imperial Unit Conversion</h1>
+            <input type="number" name="numero" id="number-el">
+            <button id="convert-btn">Convert</button>
+        </div>
+
+        <div id="container2">
+            <div id="fristOne">
+                <h2>Length (Meter/Feet)</h2>
+                <p id="length-el"></p>
+            </div>
+            <div id="secondOne">
+                <h2>Volume (Liters/Gallons)</h2>
+                <p id="volume-el"></p>
+            </div>
+            <div id="thirdOne">
+                <h2>Mass (Kilograms/Pounds)</h2>
+                <p id="mass-el"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let numberEl = document.getElementById("number-el")
+
+        let lengthEl = document.getElementById("length-el")
+        let volumeEl = document.getElementById("volume-el")
+        let massEl = document.getElementById("mass-el")
+
+        const convertBtn = document.getElementById("convert-btn")
+
+        numberEl.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                convertBtn.click()
+            }
+        })
+
+
+        convertBtn.addEventListener("click", function () {
+            lengthEl.textContent = `${numberEl.value} metros = ${feetConvert()} pés | ${numberEl.value} pés = ${meterConvert()} metros`
+
+            volumeEl.textContent = `${numberEl.value} litros = ${gallonsConvert()} galões | ${numberEl.value} galões = ${litersConvert()} litros`
+
+            massEl.textContent = `${numberEl.value} kilos = ${kilosConvert()} libras | ${numberEl.value} libras = ${librasConvert()} kilos`
+
+        })
+
+
+        // DISTÂNCIA
+        function feetConvert() {
+            let resultFeet = numberEl.value * 3.281
+            return resultFeet
+        }
+
+        function meterConvert() {
+            let resultMeter = numberEl.value * 0.3048
+            return resultMeter
+        }
+
+
+        // VOLUME
+        function gallonsConvert() {
+            let resultGallons = numberEl.value * 0.264
+            return resultGallons
+        }
+
+        function litersConvert() {
+            let resultLiters = numberEl.value * 3.78541
+            return resultLiters
+        }
+
+
+        // PESO
+        function kilosConvert() {
+            let resultKilos = numberEl.value * 2.20462
+            return resultKilos
+        }
+
+        function librasConvert() {
+            let resultLibras = numberEl.value * 0.453592
+            return resultLibras
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
