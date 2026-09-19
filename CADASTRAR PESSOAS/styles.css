@@ -1,0 +1,211 @@
+/* Fonte Inter: carregada do Google Fonts.
+   Se a pagina abrir sem internet, cai no fallback do sistema logo abaixo. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===== Paleta e tokens ===== */
+:root {
+  --fundo-topo: #0b0b24;
+  --fundo-base: #06060f;
+
+  --card-fundo: rgba(255, 255, 255, 0.055);
+  --card-borda: rgba(255, 255, 255, 0.11);
+
+  --texto: #eef2f9;
+  --texto-suave: #9aa8c0;
+
+  --verde: #0d6b27;
+  --verde-topo: #11842f;
+  --verde-vivo: #2ee07a;
+  --ciano: #82e2ff;
+
+  --raio: 16px;
+  --transicao: 180ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  font-family: 'Inter', Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--texto);
+
+  /* Duas manchas de luz (radial-gradient) por cima do fundo escuro.
+     E o que tira a pagina do "azul chapado" e cria profundidade. */
+  background:
+    radial-gradient(60vw 50vh at 15% 0%, rgba(46, 224, 122, 0.10), transparent 60%),
+    radial-gradient(55vw 45vh at 85% 15%, rgba(130, 226, 255, 0.12), transparent 60%),
+    linear-gradient(160deg, var(--fundo-topo), var(--fundo-base));
+  background-attachment: fixed;
+}
+
+/* ===== Card ===== */
+.container {
+  /* min-height, e nao height, para o card crescer junto com a lista */
+  min-height: 30vh;
+  width: min(100%, 480px);
+  margin: 12vh auto 48px auto;
+  padding: 40px 32px 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  text-align: center;
+  background-color: var(--card-fundo);
+  /* backdrop-filter desfoca o que esta ATRAS do card: efeito de vidro fosco */
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-borda);
+  border-radius: var(--raio);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),          /* sombra que apoia o card no fundo */
+    0 0 40px rgba(130, 226, 255, 0.12),      /* brilho ciano ao redor */
+    inset 0 1px 0 rgba(255, 255, 255, 0.09); /* fio de luz na borda de cima */
+}
+
+.container > div {
+  width: 100%;
+}
+
+h1 {
+  margin: 0 0 22px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  /* Texto com gradiente: pinta o fundo e recorta no formato das letras */
+  background: linear-gradient(100deg, var(--ciano), var(--verde-vivo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase; /* vira rotulo discreto, nao concorre com o h1 */
+  color: var(--texto-suave);
+}
+
+/* ===== Formulario ===== */
+#inputText,
+#btn-cadastro {
+  height: 46px;
+  vertical-align: middle;
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  transition: all var(--transicao);
+}
+
+#inputText {
+  width: min(62%, 250px);
+  margin-right: 8px;
+  padding: 0 14px;
+  color: var(--texto);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+#inputText::placeholder {
+  color: rgba(154, 168, 192, 0.6);
+}
+
+/* :focus-visible = anel so para quem navega por teclado (Tab) */
+#inputText:hover,
+#inputText:focus-visible {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--verde-vivo);
+  box-shadow: 0 0 0 3px rgba(46, 224, 122, 0.18);
+  outline: none;
+}
+
+#btn-cadastro {
+  padding: 0 22px;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--verde), var(--verde-topo));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(13, 107, 39, 0.45);
+}
+
+#btn-cadastro:hover,
+#btn-cadastro:focus-visible {
+  filter: brightness(1.25); /* clareia o gradiente inteiro de uma vez */
+  box-shadow: 0 6px 20px rgba(46, 224, 122, 0.4);
+  outline: none;
+}
+
+#btn-cadastro:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+/* ===== Lista ===== */
+#lista-Pessoas {
+  display: flex;
+  flex-direction: column; /* Força um item para baixo do outro */
+  gap: 8px;               /* Cria uma distância sutil entre as linhas */
+  list-style-type: none;  /* Remove os pontos/bolinhas do li */
+  margin: 0;
+  padding: 0;             /* Remove o recuo padrão da esquerda */
+}
+
+/* :empty pega o elemento sem nenhum filho — ou seja, a lista ainda vazia.
+   Mensagem de estado vazio sem precisar de uma linha de JavaScript. */
+#lista-Pessoas:empty::before {
+  content: 'Nenhuma pessoa cadastrada ainda';
+  display: block;
+  padding: 18px;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+#lista-Pessoas li {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--texto);
+
+  background-color: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--verde-vivo); /* tracinho verde: marca cada linha */
+  border-radius: 10px;
+
+  overflow-wrap: anywhere; /* quebra nomes longos em vez de estourar o card */
+  transition: all var(--transicao);
+  animation: entrar 200ms ease-out;
+}
+
+#lista-Pessoas li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(3px);
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* Respeita quem configurou o sistema para reduzir animacoes */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before {
+    transition: none !important;
+    animation: none !important;
+  }
+}
