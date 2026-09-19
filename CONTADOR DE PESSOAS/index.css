@@ -40,12 +40,46 @@ button {
     color: white;
     border: none;
     padding: 12px 30px;
-    margin: 10px 5px;
+    margin: 10px 20px;
     border-radius: 25px;
     font-size: 1em;
     cursor: pointer;
     transition: 0.3s;
     font-weight: 600;
+}
+
+#decrementar {
+    background-color: #ea667c;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    margin: 10px 20px;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+#decrementar:hover {
+   background-color: #bd3c52;
+}
+
+#salvar {
+    background-color: #228d42;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    margin: 10px 20px;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+#salvar:hover {
+   background-color: #04aa6a;
 }
 
 button:hover {
@@ -57,3 +91,10 @@ button:active {
     transform: scale(0.98);
 }
 
+p {
+     color: #333;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
