@@ -1,14 +1,22 @@
 let count = 0;
-let incrementar = document.getElementById('contador');
-let decrementar = document.getElementById('contador');
+
+let numeroTela = document.getElementById('contador')
+
+let adicionar = document.getElementById('incrementar')
+let remover = document.getElementById('decrementar')
+let zerar = document.getElementById('zerar')
 
 function adicionarPessoa() {
-    count = count + 1;
-    incrementar.innerText = count;
+    count += 1
+    numeroTela.innerHTML = count
 }
 
 function removerPessoa() {
-    count = count - 1;
-    decrementar.innerText = count;
+    count -= 1
+    numeroTela.innerHTML = count
 }
 
+function zerarPessoa() {
+    count = 0
+    numeroTela.innerHTML = count
+}
